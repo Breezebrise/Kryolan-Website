@@ -1,0 +1,71 @@
+name: Build and publish site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Build shade data and pages
+        run: |
+          python3 tools/build_shades.py
+          python3 tools/build_site.py --site-url "${{ steps.pages.outputs.base_url }}"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  notify-search-engines:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Send every page to IndexNow (Bing, Yandex, Naver, Seznam, Yep)
+        env:
+          BASE: ${{ steps.pages.outputs.base_url }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, time, urllib.request
+          base = os.environ["BASE"].rstrip("/") + "/"
+          key = json.load(open("data/site.json"))["indexnow_key"]
+          for _ in range(10):
+              try:
+                  xml = urllib.request.urlopen(base + "sitemap.xml", timeout=30).read().decode()
+                  break
+              except Exception:
+                  time.sleep(15)
+          urls = re.findall(r"<loc>(.*?)</loc>", xml)[:10000]
+          host = re.sub(r"^https?://", "", base).split("/")[0]
+          body = json.dumps({"host": host, "key": key, "keyLocation": base + key + ".txt", "urlList": urls}).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8"})
+          print(len(urls), "urls sent, status", urllib.request.urlopen(req, timeout=60).status)
+          PY
