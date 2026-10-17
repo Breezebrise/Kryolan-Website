@@ -87,13 +87,14 @@ tr:last-child td{border-bottom:0}
 .checks{display:grid;gap:8px}.checks label{font-weight:400;font-size:14.5px;display:flex;gap:10px;align-items:flex-start;margin:0}
 .checks input{margin-top:4px;accent-color:var(--accent)}
 .quizout{margin:0;font-weight:600}
+.btn-link{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600}
 footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}
 </style>
 </head>
 <body>
 <div class="banner">Independent fan-made guide. Not affiliated with Kryolan or any brand listed.</div>
 <div class="wrap">
-<div class="top"><b>Shade to Season</b><a href="./">Back to Kryolan Shade Lab</a></div>
+<div class="top"><b>Shade to Season</b><span><a href="./">Kryolan Shade Lab</a> · <a href="olive.html">Olive guide</a></span></div>
 
 <header>
   <div class="eyebrow">Your foundation is the starting point</div>
@@ -156,34 +157,9 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
   <p class="quizout" id="quizOut">Tick at least 4 to count as olive.</p>
   <p class="note">Signs adapted from Beautylish's olive undertone guide. When you tick 4 or more, your season result above switches to olive.</p>
 </section>
-<section class="prose" id="olive">
-  <div class="eyebrow">Olive skin</div>
-  <h2>Why olive skin is so hard to match</h2>
-  <p>Olive skin has a green or grey-green cast on top of a warm, neutral or cool base. Most foundation ranges are built on two axes, pink to yellow and light to deep, so olive gets squeezed in as "neutral" or "warm." Those shades sit on top of olive skin and turn orange or ashy by midday.</p>
-  <p>When brands do make olive, they usually add grey or green pigment. Done well, it disappears. Done badly, it looks muddy on lighter olive skin. And many brands only make olive in the medium range, so light and deep olive skin get nothing.</p>
-  <p><b>What works on olive:</b> muted, earthy colors and deep jewel tones. Olive, khaki, teal, emerald, plum, burgundy, terracotta, bronze and warm taupe. For lips: brick, rosewood, berry and warm mauve. For reds: a slightly brown or brick red reads richer than a pure orange or cool pink red.</p>
-  <p><b>What fights olive:</b> pastel pink, icy lavender, orange-yellow brights and frosty finishes. They make the green in olive skin stand out and the skin look grey.</p>
-  <p><b>Fix an olive mismatch with what you have:</b> if a foundation turns orange, mix in a drop of a neutral or olive shade. If it looks pink and chalky, a little yellow corrector under it helps. Kryolan Ultra Foundation and Supracolor have dedicated olive families, OB, Olive and SPLO, that mix into almost any base.</p>
-</section>
-
-<section style="display:grid;gap:14px">
-  <h2>Olive range report card</h2>
-  <p class="note">Counts only shades each brand itself names or describes as olive. Kryolan counts come from its olive shade families. "Strong" means olive at light, medium and deep with at least 5 shades.</p>
-  <div class="tablewrap"><table><thead><tr><th>Brand</th><th>Olive shades</th><th>Covers</th><th>Grade</th><th>Olive shades listed</th></tr></thead><tbody id="oliveTable"></tbody></table></div>
-</section>
-
-<section style="display:grid;gap:14px">
-  <h2>Olive specialists worth knowing</h2>
-  <p class="note">These brands aren't in the matcher yet, but olive-skin reviewers rate them highly. Summary of Medium Olive's brand-by-brand review.</p>
-  <div class="tablewrap"><table><thead><tr><th>Brand</th><th>Olive shades</th><th>What reviewers say</th></tr></thead><tbody>
-    <tr><td><b>About Face</b></td><td class="mono">LM2O, F2O, M2O, MD2O, MD1O, D3O, D2O, D1O</td><td>Top pick. Eight olive shades from light-medium to deep, affordable, with accurate online swatches.</td></tr>
-    <tr><td><b>Lisa Eldridge</b></td><td class="mono">2.5, 9, 9.5, 16, 17, 23, 35</td><td>Olive undertones done expertly, with each shade labeled neutral, true or golden. The skin tint stops before deep olive.</td></tr>
-    <tr><td><b>Kett</b></td><td class="mono">Cream 1 to 11, liquid 1 to 9</td><td>Neutral-olive to slightly cool creams that reach more depths than most brands. A pro kit staple.</td></tr>
-    <tr><td><b>Salt New York</b></td><td class="mono">Olive Green Adjuster</td><td>An adjuster you mix into any foundation to make it olive. Strongly recommended, especially for mature skin.</td></tr>
-    <tr><td><b>Mob Beauty</b></td><td class="mono">3O to 8O</td><td>Six olive shades, but the range is short, trends warm, and the formula is tricky.</td></tr>
-    <tr><td><b>NARS</b></td><td class="mono">Not graded</td><td>Called out for olive shades that lean too orange.</td></tr>
-  </tbody></table></div>
-</section>
+<section class="card" style="gap:10px"><div class="num">OLIVE SKIN</div><h2>Olive skin has its own guide</h2>
+  <p class="note">Olive shade finder across every brand, olive palettes, a brand report card and the olive specialists.</p>
+  <p><a class="btn-link" href="olive.html">Open the olive guide</a></p></section>
 <section class="prose" id="pale">
   <div class="eyebrow">Very pale skin</div>
   <h2>Too light for every range? Mix your own</h2>
@@ -300,7 +276,7 @@ function render(){
     document.querySelector(`.seg:not(.lipq) button[data-c="${c}"]`).click();
   });
 }
-$("oliveTable").innerHTML = D.olive.map(r => `<tr><td><b>${esc(r.brand)}</b><br><span class="note">${esc(r.product)}</span></td>
+if ($("oliveTable")) $("oliveTable").innerHTML = D.olive.map(r => `<tr><td><b>${esc(r.brand)}</b><br><span class="note">${esc(r.product)}</span></td>
   <td>${r.count} of ${r.total}</td>
   <td><div class="dots">${["light","medium","deep"].map(t => `<span class="${r.tiers[t] ? "on" : ""}">${t}</span>`).join("")}</div></td>
   <td><span class="grade g-${r.grade.split(" ")[0]}">${esc(r.grade)}</span></td>
