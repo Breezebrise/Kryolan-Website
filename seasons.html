@@ -84,6 +84,9 @@ tr:last-child td{border-bottom:0}
 .g-Partial{color:#a8641a;background:color-mix(in srgb,#a8641a 14%,transparent)}
 .g-Thin,.g-None{color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}
 .mono{font-family:var(--mono);font-size:12.5px}
+.checks{display:grid;gap:8px}.checks label{font-weight:400;font-size:14.5px;display:flex;gap:10px;align-items:flex-start;margin:0}
+.checks input{margin-top:4px;accent-color:var(--accent)}
+.quizout{margin:0;font-weight:600}
 footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}
 </style>
 </head>
@@ -138,6 +141,21 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
   <div class="empty" id="empty">Pick your foundation shade to see your season and palette.</div>
 </section>
 
+<section class="card" id="oliveQuiz" style="gap:12px">
+  <div class="num">OLIVE CHECK</div><h2>Are you olive? Tick what sounds like you</h2>
+  <div class="checks">
+    <label><input type="checkbox"> My skin has a subtle green or grey cast in daylight</label>
+    <label><input type="checkbox"> Foundations look too yellow, pink or orange even when the depth is right</label>
+    <label><input type="checkbox"> My wrist veins don't look clearly green or clearly blue</label>
+    <label><input type="checkbox"> Rich, muted colors flatter me more than pastels</label>
+    <label><input type="checkbox"> Pale, white-based nude lipsticks make me look washed out</label>
+    <label><input type="checkbox"> Both gold and silver jewelry look fine on me</label>
+    <label><input type="checkbox"> Red lipsticks often turn pink or magenta on me</label>
+    <label><input type="checkbox"> Some colors make me look ashy or unwell</label>
+  </div>
+  <p class="quizout" id="quizOut">Tick at least 4 to count as olive.</p>
+  <p class="note">Signs adapted from Beautylish's olive undertone guide. When you tick 4 or more, your season result above switches to olive.</p>
+</section>
 <section class="prose" id="olive">
   <div class="eyebrow">Olive skin</div>
   <h2>Why olive skin is so hard to match</h2>
@@ -154,6 +172,27 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
   <div class="tablewrap"><table><thead><tr><th>Brand</th><th>Olive shades</th><th>Covers</th><th>Grade</th><th>Olive shades listed</th></tr></thead><tbody id="oliveTable"></tbody></table></div>
 </section>
 
+<section style="display:grid;gap:14px">
+  <h2>Olive specialists worth knowing</h2>
+  <p class="note">These brands aren't in the matcher yet, but olive-skin reviewers rate them highly. Summary of Medium Olive's brand-by-brand review.</p>
+  <div class="tablewrap"><table><thead><tr><th>Brand</th><th>Olive shades</th><th>What reviewers say</th></tr></thead><tbody>
+    <tr><td><b>About Face</b></td><td class="mono">LM2O, F2O, M2O, MD2O, MD1O, D3O, D2O, D1O</td><td>Top pick. Eight olive shades from light-medium to deep, affordable, with accurate online swatches.</td></tr>
+    <tr><td><b>Lisa Eldridge</b></td><td class="mono">2.5, 9, 9.5, 16, 17, 23, 35</td><td>Olive undertones done expertly, with each shade labeled neutral, true or golden. The skin tint stops before deep olive.</td></tr>
+    <tr><td><b>Kett</b></td><td class="mono">Cream 1 to 11, liquid 1 to 9</td><td>Neutral-olive to slightly cool creams that reach more depths than most brands. A pro kit staple.</td></tr>
+    <tr><td><b>Salt New York</b></td><td class="mono">Olive Green Adjuster</td><td>An adjuster you mix into any foundation to make it olive. Strongly recommended, especially for mature skin.</td></tr>
+    <tr><td><b>Mob Beauty</b></td><td class="mono">3O to 8O</td><td>Six olive shades, but the range is short, trends warm, and the formula is tricky.</td></tr>
+    <tr><td><b>NARS</b></td><td class="mono">Not graded</td><td>Called out for olive shades that lean too orange.</td></tr>
+  </tbody></table></div>
+</section>
+<section class="prose" id="pale">
+  <div class="eyebrow">Very pale skin</div>
+  <h2>Too light for every range? Mix your own</h2>
+  <p>Very pale skin runs into the opposite problem from olive. The lightest shade in a range is often still too dark, or it oxidizes and turns orange by midday. The fix pros use is a white mixer. Add a drop to any foundation to lift it a shade or two without changing the undertone much.</p>
+  <p><b>Kryolan already makes them.</b> Supracolor 070 white, TV Paint Stick TV white and Ultra Foundation white are pure white bases. Mix a tiny amount into your shade with a spatula, then check the jawline. Too much white looks chalky, so add less than you think.</p>
+  <p><b>Liquid mixers</b> work with liquid foundations: NYX Pro Foundation Mixer, L.A. Girl Pro Color Foundation Mixing Pigment in White, and Manic Panic Dreamtone in Virgin Whitest White.</p>
+  <p><b>Fixing the undertone:</b> if your palest shade looks pink, a touch of Kryolan yellow veil corrects it. If it looks yellow or orange, cut it with a cooler pale shade like NB or alabaster.</p>
+  <p><b>Colors on pale skin:</b> pale skin shows the difference between reds instantly. Use the red test above. Cool-leaning pale skin usually wants berry, raspberry or blue-red. Warm-leaning pale skin wants coral or a clear orange-red.</p>
+</section>
 <footer>Seasonal color analysis is a guide, not a rule. It is usually done in person with your real hair and eyes. Shade data comes from each brand's own shade names and descriptions, October 2026. Always swatch on your jawline in daylight.</footer>
 </div>
 
@@ -213,7 +252,13 @@ $("shade").onchange = render;
 document.querySelectorAll(".seg:not(.lipq) button").forEach(b => b.onclick = () => {
   contrast = +b.dataset.c; document.querySelectorAll(".seg:not(.lipq) button").forEach(x => x.setAttribute("aria-pressed", x === b)); render();
 });
-let lip = "";
+let lip = "", oliveFlag = false;
+const boxes = [...document.querySelectorAll("#oliveQuiz input")];
+boxes.forEach(b => b.addEventListener("change", () => {
+  const n = boxes.filter(x => x.checked).length; oliveFlag = n >= 4;
+  $("quizOut").textContent = oliveFlag ? `${n} of 8: you very likely have olive undertones. Your season now uses olive.` : n ? `${n} of 8: probably not olive. Tick at least 4 to count as olive.` : "Tick at least 4 to count as olive.";
+  render();
+}));
 document.querySelectorAll(".lipq button").forEach(b => b.onclick = () => {
   lip = b.dataset.l; document.querySelectorAll(".lipq button").forEach(x => x.setAttribute("aria-pressed", x === b)); render();
 });
@@ -234,6 +279,7 @@ function current(){
 function render(){
   const cur = current();
   if (!cur) { $("result").innerHTML = `<div class="empty">Pick your foundation shade to see your season and palette.</div>`; return; }
+  if (oliveFlag) { cur.o = Math.max(cur.o, 1.3); cur.u = Math.max(cur.u, 0.2); }
   const key = season(cur.d, cur.u, cur.o, contrast, lip), s = S[key], skin = hex(cur.d, cur.u, cur.o);
   const alts = [...new Set([0,1,2].filter(c => c !== contrast).map(c => season(cur.d, cur.u, cur.o, c, lip)))].filter(k => k !== key);
   $("result").innerHTML = `
