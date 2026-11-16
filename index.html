@@ -469,7 +469,7 @@ ${shelf()}
   function chrome(kind) {
     document.documentElement.lang = T.html_lang;
     $("banner").textContent = T.banner; $("brand").textContent = T.site_name; $("foot").textContent = T.footer;
-    $("nav").innerHTML = [["#/", T.nav_home, "home"], ["olive.html", T.nav_olive, "olive"], ["seasons.html", T.nav_seasons, "seasons"], ["#/shades", T.nav_lines, "shades"], ["#/wheels", T.nav_wheels, "wheels"], ["#/about", T.nav_about, "about"]].map(([h, n, k]) => `<a href="${h}"${k === "olive" ? ' class="olive-pill"' : ""}${k === kind ? ' aria-current="page"' : ""}>${esc(n)}</a>`).join("");
+    $("nav").innerHTML = [["#/", T.nav_home, "home"], ["olive.html", T.nav_olive, "olive"], ["seasons.html", T.nav_seasons, "seasons"], ["olive-color-lab.html", lang === "zh-Hans" ? "橄榄唇色" : lang === "zh-Hant" ? "橄欖唇色" : "Olive Color Lab", "olive-colors"], ["#/shades", T.nav_lines, "shades"], ["#/wheels", T.nav_wheels, "wheels"], ["#/about", T.nav_about, "about"]].map(([h, n, k]) => `<a href="${h}"${k === "olive" ? ' class="olive-pill"' : ""}${k === kind ? ' aria-current="page"' : ""}>${esc(n)}</a>`).join("");
     $("langs").innerHTML = LANGS.map(L => `<a href="#" data-lang="${L}" lang="${L}"${L === lang ? ' aria-current="true"' : ""}>${esc(I18N[L].label)}</a>`).join("") +
       `<select id="translate" aria-label="${esc(T.translate_other)}"><option value="">${esc(T.translate_other)}</option>${OTHER.map(([c, n]) => `<option value="${c}" lang="${c}">${esc(n)}</option>`).join("")}</select>`;
     $("langs").querySelectorAll("a[data-lang]").forEach(a => (a.onclick = ev => { ev.preventDefault(); lang = a.dataset.lang; T = I18N[lang]; try { localStorage.setItem("ksl-lang", lang); } catch (e) {} route(); }));

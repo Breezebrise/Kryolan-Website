@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Compare two lip colors side by side with olive undertone wearer notes, linked swatches, and a private photo comparison.">
+<title>Olive Color Lab · Kryolan Shade Lab</title>
+<link rel="stylesheet" href="assets/olive-colors.css">
+<script type="module" src="assets/olive-colors-ui.js"></script>
+</head>
+<body>
+<header class="top wrap">
+  <a class="brand" href="./">Kryolan Shade Lab</a>
+  <nav aria-label="Main"><a href="olive.html">Olive guide</a><a href="seasons.html">Color seasons</a><a href="olive-color-lab.html" aria-current="page">Olive Color Lab</a></nav>
+</header>
+<main class="wrap">
+  <header class="hero"><p class="eyebrow">THE OLIVE COLOR LAB / 01</p><h1>Which one pulls orange?</h1>
+  <p class="lede">Compare two lip colors. Start with one you know, then see what a cooler, softer, or deeper alternative looks like.</p></header>
+  <section class="panel" aria-labelledby="pair-title">
+    <div class="section-head"><div><p class="eyebrow">01 / CHOOSE YOUR PAIR</p><h2 id="pair-title">Compare lip shades</h2></div><button id="swap" type="button">Swap sides</button></div>
+    <div class="selectors">
+      <div><label for="reference">Shade A · your reference</label><select id="reference"></select></div>
+      <div><label for="comparison">Shade B · compare with</label><select id="comparison" aria-describedby="match-count"></select></div>
+    </div>
+    <details class="refine"><summary>Find an alternative</summary>
+      <div class="filters">
+        <div><label for="search">Search brand, formula, or shade</label><input id="search" type="search" placeholder="e.g. Maybelline, berry, Rum Raisin"></div>
+        <div><label for="goal">Compared with shade A</label><select id="goal"><option value="">Any color</option><option value="cooler">Cooler / less warm-looking</option><option value="muted">More muted</option><option value="deep">Deeper</option><option value="opaque">More opaque</option></select></div>
+        <div class="inline"><label><input id="drugstore" type="checkbox"> Drugstore only</label><button id="clear" type="button">Clear filters</button></div>
+      </div>
+    </details>
+    <p id="match-count" class="hint" role="status"></p>
+  </section>
+  <section aria-labelledby="preview-title">
+    <p class="eyebrow">02 / COMPARE COLOR</p><h2 id="preview-title">Color previews</h2>
+    <p class="hint">These are estimated color chips, not photos or a simulation of how the product will look on your lips. “Cooler” is relative to the shade on the left.</p>
+    <p id="delta" class="delta" aria-live="polite"></p>
+    <div id="chips" class="pair"></div>
+  </section>
+  <section aria-labelledby="swatch-title">
+    <p class="eyebrow">03 / CHECK REAL SWATCHES</p><h2 id="swatch-title">What wearers actually saw</h2>
+    <div class="evidence-controls">
+      <fieldset class="seg"><legend class="sr-only">Photo type</legend><label><input type="radio" name="view" value="arm" checked><span>Arm swatches</span></label><label><input type="radio" name="view" value="lips"><span>On lips</span></label></fieldset>
+      <div><label for="profile">Wearer undertone</label><select id="profile"><option value="">All reports</option><option value="cool">Cool-leaning olive</option><option value="warm">Warm olive</option></select></div>
+    </div>
+    <p id="shared" class="hint"></p><div class="pair" id="reports"></div>
+    <details class="panel local"><summary>Compare your own photos</summary><p class="hint">Pick two photos to put them side by side. They stay in this tab and are never uploaded.</p>
+      <div class="pair">
+        <div><label for="photo-a">Photo A</label><input type="file" id="photo-a" accept="image/*"><img id="image-a" alt="Your selected comparison photo A" hidden><button id="clear-a" type="button" hidden>Remove photo A</button></div>
+        <div><label for="photo-b">Photo B</label><input type="file" id="photo-b" accept="image/*"><img id="image-b" alt="Your selected comparison photo B" hidden><button id="clear-b" type="button" hidden>Remove photo B</button></div>
+      </div>
+      <p id="photo-status" class="hint" role="status"></p>
+    </details>
+  </section>
+  <noscript><p>This comparison needs JavaScript. You can still use the <a href="olive.html">Olive Skin Guide</a>.</p></noscript>
+</main>
+<footer class="wrap"><p>Independent, unofficial shade guide. Wearer notes are individual experiences, and availability can vary.</p></footer>
+</body>
+</html>
