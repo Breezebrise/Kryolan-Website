@@ -33,3 +33,12 @@ To preview on your own computer, run `python3 tools/build_shades.py`, then `pyth
 ## Credits
 
 Thank you to Kryolan for decades of makeup that film, theater and beauty artists trust. Shade codes come from kryolan.com. Kryolan and its product names are trademarks of their owner. The Supabase client library in `assets/vendor` is MIT licensed.
+
+
+## Olive Color Lab
+
+Open `olive-color-lab.html` to compare two lip shades, starting with P.Louise Babydoll and Maybelline Seductress. Search alternatives, limit to drugstore formulas, or choose a relative color or coverage direction. Arm and lip-source photos are linked separately. A same-post link means the shades are both in that post, not necessarily the same frame or lighting.
+
+The color chips and filter tags are editorial estimates. Wearer details and lighting are recorded only when the source gives them. Do not re-use older formulas' photos for new formulas. The optional photo comparison keeps the selected files in the browser tab.
+
+Update product and source data in `assets/olive-colors.js`. Run `node --test tests/olive-colors.test.mjs` to test the comparison logic. To preview locally, serve the repository root using `python3 -m http.server 8000`, then visit `http://localhost:8000/olive-color-lab.html`.
