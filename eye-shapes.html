@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Eye makeup shapes · Kryolan Shade Lab</title>
-<meta name="description" content="Compare six eye makeup silhouettes on the same eye. Isolate liner, shadow, lashes and highlights to see how each placement works.">
+<meta name="description" content="Compare Douyin-inspired and Western glam eye makeup silhouettes on the same eye. Isolate liner, shadow, lashes and highlights to see how each placement works.">
 <style>
 :root{color-scheme:light dark;--bg:#faf7f8;--card:#fffdfd;--ink:#281d29;--muted:#685967;--line:#d8c9d2;--plum:#702d58;--blush:#f2e2eb;--display:Georgia,'Iowan Old Style',serif;font:100%/1.5 system-ui,sans-serif;background:var(--bg);color:var(--ink)}
 @media(prefers-color-scheme:dark){:root{--bg:#1b161d;--card:#241e26;--ink:#f6ecf4;--muted:#cebcca;--line:#50434f;--plum:#ecafd6;--blush:#452a3c}}
@@ -13,11 +13,13 @@ h1,h2,p{margin:0}header{padding:clamp(2rem,5vw,4rem) 0 1.8rem}h1{font:400 clamp(
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.8rem,2.5vw,1.6rem)}.look{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}.picker{padding:1rem 1.2rem;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.7rem}.picker select{width:100%;font-size:1rem}.eye{display:block;width:100%;height:auto;background:var(--skin,#e7bfa9)}.copy{padding:1.25rem}.copy h2{font:400 clamp(1.6rem,3vw,2.2rem)/1.1 var(--display);letter-spacing:-.035em}.effect{color:var(--muted);margin:.5rem 0 1rem}dl{margin:0}dl div{border-top:1px solid var(--line);padding:.58rem 0;display:grid;grid-template-columns:5.4rem 1fr;gap:.55rem}dt{font-weight:650;color:var(--plum)}dd{margin:0}.note{padding:1.5rem 0 2.5rem;max-width:78ch;color:var(--muted)}.note a{font-weight:600}.sr{clip-path:inset(50%);width:1px;height:1px;position:absolute;overflow:hidden}.defs{position:absolute;width:0;height:0;overflow:hidden}
 #guide[data-layer=bare] .makeup,#guide[data-layer=liner] .makeup:not(.liner),#guide[data-layer=shadow] .makeup:not(.shadow),#guide[data-layer=lash] .makeup:not(.lash),#guide[data-layer=light] .makeup:not(.light){display:none}
 @media(max-width:690px){.pair{grid-template-columns:1fr}.top{gap:.75rem}.picker{padding:.8rem 1rem}.eye{max-height:235px}.controls{align-items:start}.copy{padding:1rem}.layer-choice{flex-wrap:wrap}}
+.presets{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem;margin:0 0 1.1rem}.presets strong{font-size:.9rem;margin-right:.3rem}.presets button{font:inherit;font-size:.9rem;color:var(--plum);border:1px solid var(--line);border-radius:2rem;background:var(--card);padding:.4rem .85rem;cursor:pointer}.presets button:hover,.presets button[aria-pressed="true"]{border-color:var(--plum);background:var(--blush)}
 </style>
 </head>
 <body><div class="banner">Independent, fan-made makeup guide</div>
 <div class="shell"><div class="top"><a class="brand" href="./">Kryolan Shade Lab</a><nav aria-label="Main"><a href="./">Shade matcher</a><a href="olive.html">Olive skin</a><a href="seasons.html">Color seasons</a><a href="eye-shapes.html" aria-current="page">Eye makeup shapes</a><a href="./#/shades">All shades</a></nav></div>
-<main id="guide" data-layer="full"><header><h1>Eye makeup shapes</h1><p>Pick two looks to compare on the same eye. Follow the wing at the outer corner, then look above and below the pupil to see where each shape gets its height.</p></header>
+<main id="guide" data-layer="full"><header><h1>Eye makeup shapes</h1><p>Compare two looks on the same eye. Trace the edge above the lashes to see where a crease is carved, or switch to Shadow only to see where the darkest color sits.</p></header>
+<div class="presets" role="group" aria-label="Quick comparisons"><strong>Compare shapes</strong><button data-pair="half-full" type="button">Half vs. full cut crease</button><button data-pair="creases" type="button">Full vs. double cut crease</button><button data-pair="halo-cut" type="button">Halo vs. halo cut crease</button></div>
 <div class="controls"><div class="tones" role="radiogroup" aria-labelledby="tone-label"><span class="tone-label" id="tone-label">Face chart tone</span>
 <label><input type="radio" name="tone" value="#f2d9c8" aria-label="Light"><span style="--swatch:#f2d9c8"></span></label>
 <label><input type="radio" name="tone" value="#e7bfa9" aria-label="Light medium" checked><span style="--swatch:#e7bfa9"></span></label>
@@ -27,6 +29,9 @@ h1,h2,p{margin:0}header{padding:clamp(2rem,5vw,4rem) 0 1.8rem}h1{font:400 clamp(
 <div class="layer-choice"><label for="layer">Show</label><select id="layer"><option value="full">Finished makeup</option><option value="bare">Bare eye</option><option value="shadow">Shadow only</option><option value="liner">Liner only</option><option value="lash">Lashes only</option><option value="light">Highlight only</option></select></div></div>
 <svg class="defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
 <filter id="soft" x="-30%" y="-45%" width="160%" height="190%"><feGaussianBlur stdDeviation="5"/></filter>
+<linearGradient id="fade-cut" gradientUnits="userSpaceOnUse" x1="115" x2="163"><stop offset="0" stop-color="#ffe0d2"/><stop offset="1" stop-color="#ffe0d2" stop-opacity="0"/></linearGradient>
+<linearGradient id="spotlight" gradientUnits="userSpaceOnUse" x1="96" x2="169"><stop stop-color="#9e607a" stop-opacity="0"/><stop offset=".3" stop-color="#be8299"/><stop offset=".52" stop-color="#ffe0cc"/><stop offset=".73" stop-color="#c08a9b"/><stop offset="1" stop-color="#855568" stop-opacity="0"/></linearGradient>
+<linearGradient id="smoke" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="61" y2="98"><stop stop-color="#523648" stop-opacity=".08"/><stop offset=".55" stop-color="#5a394c" stop-opacity=".72"/><stop offset="1" stop-color="#382434"/></linearGradient>
 <radialGradient id="iris"><stop stop-color="#38251d"/><stop offset=".6" stop-color="#9d744f"/><stop offset=".83" stop-color="#735037"/><stop offset="1" stop-color="#392e2a"/></radialGradient>
 <linearGradient id="sclera" x2="0" y2="1"><stop stop-color="#d9ccc7"/><stop offset=".5" stop-color="#fff5ec"/><stop offset="1" stop-color="#eedbd3"/></linearGradient>
 <path id="opening" d="M62 117 Q110 58 174 88 Q194 96 211 104 Q170 135 129 137 Q89 137 62 117Z"/>
@@ -35,11 +40,22 @@ h1,h2,p{margin:0}header{padding:clamp(2rem,5vw,4rem) 0 1.8rem}h1{font:400 clamp(
 </defs></svg>
 <div class="pair" id="pair"></div>
 <noscript><p>Enable JavaScript to compare the face charts. A cat wing rises above the outer corner, puppy liner dips below it, and the Douyin-inspired doll look concentrates the longest lashes over the pupil.</p></noscript>
-<p class="note">These are six placement recipes you can mix. The Douyin-inspired example combines separated manhua lash clusters with a softly shaded lower-lid roll and a pinpoint of shimmer. <a href="https://www.allure.com/story/douyin-makeup-trend">Read about Douyin makeup in Allure</a>.</p>
+<p class="note">These placement recipes can be combined. For the Western glam charts, see the <a href="https://www.lorealparisusa.com/beauty-magazine/makeup/eye-makeup/half-cut-crease">half cut crease tutorial</a> and a <a href="https://www.youtube.com/watch?v=Rk9B_8yqab4">negative-space double cut crease demonstration</a>. The Douyin-inspired example combines separated manhua lash clusters with a softly shaded lower-lid roll and a pinpoint of shimmer. <a href="https://www.allure.com/story/douyin-makeup-trend">Read about Douyin makeup in Allure</a>.</p>
 </main></div>
 <script>
+// Keep the base eye, liner and lashes constant in the crease comparisons.
+const softWing = 'M68 111 Q123 56 178 87 Q201 100 223 92 Q218 101 210 106 Q167 81 143 82 Q101 78 68 113Z';
+const lashFan = [[89,96,-4,-7],[113,85,-2,-10],[137,82,1,-12],[161,85,4,-12],[184,93,8,-10],[202,100,10,-8]];
+const glamBase = {family:'Western glam',wing:softWing,upper:lashFan,bottom:[],lower:'',glow:[],
+ liner:'Trace the upper lashes with a fine line and a short flick. Leave room above it for the lid color.',
+ lash:'Use a fine, evenly spaced fan so you can still see the edge of the shadow.',
+ light:'Keep the lid satin or matte. Its lighter color creates the contrast.'};
+const fullLid = 'M65 111 C82 74 111 57 139 58 C165 58 192 77 212 91 L224 85 L211 103 Q186 90 174 87 Q113 62 65 117Z';
+const fullArc = 'M65 111 C82 74 111 57 139 58 C165 58 192 77 212 91 L224 85';
+const creaseWash = 'M62 111 Q78 63 113 52 Q157 35 201 73 L228 82 L211 102 Q158 69 123 78 Q90 83 62 111Z';
+const spotlightLid = 'M94 96 Q105 72 119 66 Q136 59 149 64 Q161 69 173 87 Q135 69 94 96Z';
 const looks = [
- {name:'Douyin-inspired doll eye',effect:'The tallest lash spikes and the sparkle beneath them line up with the pupil, making the eye read rounder.',
+ {name:'Douyin-inspired doll eye', family:'Douyin-inspired',effect:'The tallest lash spikes and the sparkle beneath them line up with the pupil, making the eye read rounder.',
  shadow:'Blend rosy shadow over the central lid. Under the pupil, trace the lower edge of the small roll that appears when you smile.',
  liner:'Keep the upper line fine and the outer flick short. Leave the lower center open.',
  lash:'Group the lashes into separated spikes, tallest over the iris. Add short, spaced accents below.',
@@ -47,7 +63,7 @@ const looks = [
  wash:'M73 103 Q114 46 161 67 Q198 76 219 104 Q138 86 73 115Z',lower:'M98 145 Q131 160 169 143',
  wing:'M65 115 Q119 57 176 87 Q200 99 220 99 Q213 105 209 106 Q184 98 173 91 Q117 64 65 117Z',
  upper:[[87,96,-5,-11],[110,86,-3,-19],[134,82,1,-25],[157,83,5,-20],[179,91,7,-16],[199,99,8,-10]],bottom:[[113,136,-3,8],[135,136,0,11],[155,133,3,9],[176,127,5,6]],glow:[[134,74,6],[133,144,5],[64,117,2.5]]},
- {name:'Puppy liner',effect:'The upper lash line keeps falling after the outer corner. The small dip gives the outer edge a softer slope.',
+ {name:'Puppy liner', family:'Liner shapes',effect:'The upper lash line keeps falling after the outer corner. The small dip gives the outer edge a softer slope.',
  shadow:'Smudge taupe along the outer upper lash roots and into the little triangle below the outer corner.',
  liner:'Follow the downward curve of the upper lashes past the corner. Connect the tip back toward the outer lower lashes.',
  lash:'Angle the outer lashes sideways. Keep the very tip of the liner visible.',
@@ -55,7 +71,7 @@ const looks = [
  wash:'M155 82 Q194 79 232 119 Q215 135 176 128 Q200 111 182 99Z',lower:'M177 129 Q207 124 231 118',
  wing:'M110 86 Q150 69 193 95 Q215 107 236 119 Q217 122 187 123 Q207 115 207 106 Q160 77 110 87Z',
  upper:[[136,82,1,-8],[157,83,5,-9],[179,91,7,-8],[198,99,11,-5]],bottom:[],glow:[[65,117,3]]},
- {name:'Lifted cat eye',effect:'A sharp triangle climbs above the outer corner. Its highest point sits well beyond the lash line.',
+ {name:'Lifted cat eye', family:'Liner shapes',effect:'A sharp triangle climbs above the outer corner. Its highest point sits well beyond the lash line.',
  shadow:'Sweep matte shadow from the outer third toward the end of the brow, keeping the lower edge crisp.',
  liner:'Sketch the rising edge from the outer corner first. Join its tip back to the upper lash line and fill the triangle.',
  lash:'Let clusters grow longer toward the outer third and brush them up toward the tip.',
@@ -63,7 +79,7 @@ const looks = [
  wash:'M139 81 Q194 83 244 57 Q227 94 202 107 Q173 88 139 88Z',lower:'',
  wing:'M76 103 Q124 62 179 85 Q208 99 247 61 Q235 86 209 106 Q165 82 143 81 Q110 77 76 105Z',
  upper:[[126,82,1,-7],[155,83,5,-10],[180,91,8,-15],[201,100,14,-22]],bottom:[],glow:[[65,116,3]]},
- {name:'Elongated siren eye',effect:'Two narrow points pull the eye out horizontally. The darkest color stays close to the lashes.',
+ {name:'Elongated siren eye', family:'Liner shapes',effect:'Two narrow points pull the eye out horizontally. The darkest color stays close to the lashes.',
  shadow:'Press a narrow strip of deep brown along the outer lashes and blend straight toward the temple.',
  liner:'Give the tear duct a fine inward point. Extend the outer corner almost horizontally, with a small lift at the tip.',
  lash:'Comb lashes outward and place the longest accents in the outer third.',
@@ -71,7 +87,7 @@ const looks = [
  wash:'M86 98 Q139 60 196 90 Q217 94 250 88 Q235 106 207 112 Q176 95 165 89Z',lower:'M168 131 Q199 118 219 103',
  wing:'M48 125 Q71 107 79 101 Q125 66 170 83 Q197 97 253 87 Q232 99 210 106 Q160 75 127 82 Q81 89 65 120Z',
  upper:[[142,82,4,-7],[166,87,8,-8],[186,94,12,-8],[203,101,16,-9]],bottom:[],glow:[]},
- {name:'Halo eye',effect:'A bright vertical strip between two shaded corners brings the center of the lid forward.',
+ {name:'Halo eye', family:'Western glam',lid:spotlightLid,lidFill:'url(#spotlight)',effect:'A bright vertical strip between two shaded corners brings the center of the lid forward.',
  shadow:'Deepen the inner and outer lid separately, then soften both edges into the crease. Leave a gap over the iris.',
  liner:'Keep the line thin at the lash roots and end it at the outer corner.',
  lash:'Fan lashes evenly with a little extra height in the middle.',
@@ -79,14 +95,41 @@ const looks = [
  wash:'M70 111 Q79 76 111 73 L124 87 Q92 92 71 115Z M151 82 L160 63 Q201 68 218 103 L206 108Z',lower:'M74 127 Q90 140 107 140 M162 136 Q186 132 202 117',
  wing:'M65 115 Q119 57 175 87 Q193 97 211 104 L207 105 Q168 84 147 82 Q106 77 65 117Z',
  upper:[[90,95,-6,-8],[113,85,-3,-12],[136,82,1,-15],[160,84,4,-12],[184,93,7,-10]],bottom:[],glow:[[135,73,10],[134,140,3]]},
- {name:'Smoky outer V',effect:'Two soft bands of depth meet at the outer corner. The rounded shadow edge does most of the shaping.',
+ {name:'Smoky outer V', family:'Western glam',effect:'Two soft bands of depth meet at the outer corner. The rounded shadow edge does most of the shaping.',
  shadow:'Trace a sideways V along the outer crease and upper lash roots. Blend where the two strokes meet, leaving the inner lid light.',
  liner:'Smudge pencil into the outer lash roots, keeping the edge inside the shadow.',
  lash:'Concentrate the fuller clusters just before the outer corner.',
  light:'Add a wash of satin to the inner third and let it fade toward the center.',
  wash:'M136 62 Q179 60 218 92 L221 102 Q208 112 171 114 L165 103 Q191 99 190 94 Q175 78 140 76Z',lower:'M170 132 Q193 127 210 110',
  wing:'M132 82 Q169 75 196 96 L219 98 L210 107 Q169 83 132 84Z',
- upper:[[140,82,2,-8],[161,85,5,-12],[180,91,8,-14],[198,99,10,-12]],bottom:[],glow:[[89,96,5]]}
+ upper:[[140,82,2,-8],[161,85,5,-12],[180,91,8,-14],[198,99,10,-12]],bottom:[],glow:[[89,96,5]]},
+ {...glamBase, name:'Half cut crease',
+ effect:'The sharp arc starts at the inner corner and dissolves near the center. The outer third stays smoky.',
+ shadow:'Blend plum through the crease and outer corner. With a flat brush and a lighter base, carve the inner lid to just past the pupil. Tap shadow over the join to fade it into the outer third.',
+ wash:creaseWash+' M154 82 Q183 65 216 92 L211 104 Q177 87 154 86Z',
+ lid:'M65 111 C84 72 111 56 139 58 Q156 58 168 69 L165 85 Q111 64 65 117Z',lidFill:'url(#fade-cut)',
+ cuts:['M65 111 C84 72 108 59 129 58']},
+ {...glamBase, name:'Full cut crease',
+ effect:'One uninterrupted, crisp arc divides the lighter lid from the darker crease all the way to the outer edge.',
+ shadow:'Shade above the crease first. Look straight ahead to mark an arc that stays visible, then use a flat brush and a pale base to carve from the inner corner to the outer edge. Press lid color underneath.',
+ wash:creaseWash,lid:fullLid,lidFill:'#efc7bc',cuts:[fullArc]},
+ {...glamBase, name:'Double cut crease',
+ effect:'Two crisp arcs follow each other above the lashes. A narrow strip of skin between them keeps both edges readable.',
+ shadow:'Map the lower arc with your eye open. Sketch a second arc above it with a fine brush. Blend plum above the upper arc, carve the light lid below the lower arc, and leave the strip between them bare.',
+ wash:'M74 91 C99 43 143 30 180 53 Q208 68 232 74 L223 80 Q166 47 145 49 Q103 49 74 91Z',
+ lid:fullLid,lidFill:'#efc7bc',cuts:[fullArc,'M70 96 C97 47 137 36 170 53 Q199 65 220 80 L230 75']},
+ {...glamBase, name:'Halo cut crease',
+ effect:'A crisp arch frames the spotlight over the iris. The inner and outer corners still carry the depth of a halo eye.',
+ shadow:'Build matching depth on the inner and outer lid. Carve a small arch above the pupil with a flat brush. Fade its left and right edges into both dark corners while keeping the top edge sharp.',
+ light:'Press the brightest shimmer down the middle of the carved area, with a softer satin on either side.',
+ wash:'M64 109 Q85 58 119 64 L123 84 Q85 98 64 116Z M146 79 L154 60 Q192 64 217 101 L206 107Z',
+ lid:spotlightLid,lidFill:'url(#spotlight)',cuts:['M105 80 Q128 54 149 64 Q158 67 165 75'],glow:[[135,72,4]]},
+ {...glamBase, name:'Classic smoky eye',
+ effect:'The deepest band hugs the lashes and fades upward over the whole lid. The inner and outer corners belong to the same gradient.',
+ shadow:'Press a dark shade against the upper lashes from inner to outer corner. Blend it into a midtone above, then use a clean brush to soften the crease. Smudge the lower lashes to echo the upper lid.',
+ liner:'Work pencil into the upper lash roots and soften its edge into the shadow.',
+ light:'Keep the lid gradient continuous. Add a small satin accent at the tear duct if you want one bright point.',
+ wash:creaseWash,lid:fullLid,lidFill:'url(#smoke)',lower:'M76 126 Q132 151 203 113',glow:[[64,116,2]]}
 ];
 const guide = document.querySelector('#guide');
 const fields = [['shadow','Shadow'],['liner','Liner'],['lash','Lashes'],['light','Highlight']];
@@ -96,13 +139,17 @@ function spikes(points) {
 function chart(look) {
  const lower = look.lower ? '<path d="'+look.lower+'" fill="none" stroke="#7a403e" stroke-width="4" opacity=".68"/>' : '';
  const lights = look.glow.map(([x,y,r])=>'<g transform="translate('+x+' '+y+')"><ellipse rx="'+(r*1.35)+'" ry="'+(r*.62)+'" fill="#ffe6c5" filter="url(#soft)"/><path d="M0 '+(-r)+' Q1 -1 '+r+' 0 Q1 1 0 '+r+' Q-1 1 '+(-r)+' 0 Q-1 -1 0 '+(-r)+'Z" fill="#fff6dd"/></g>').join('');
- return '<svg class="eye" viewBox="26 15 244 150" role="img" aria-label="'+look.name+' placement drawing, inner corner on the left"><g class="makeup shadow"><path d="'+look.wash+'" fill="#884c5e" opacity=".74" filter="url(#soft)"/>'+lower+'</g><use href="#eye-base"/><path class="makeup liner" d="'+look.wing+'" fill="#352329"/><g class="makeup lash" fill="#2b2022">'+spikes(look.upper)+spikes(look.bottom)+'</g><g class="makeup light">'+lights+'</g></svg>';
+ const lid = look.lid ? '<path d="'+look.lid+'" fill="'+look.lidFill+'"/>' : '';
+ const contours = (look.cuts || []).map(d=>'<path d="'+d+'" fill="none" stroke="#63354e" stroke-width="1.7" stroke-linecap="round"/>').join('');
+ return '<svg class="eye" viewBox="26 15 244 150" role="img" aria-label="'+look.name+' placement drawing, inner corner on the left"><g class="makeup shadow"><path d="'+look.wash+'" fill="#884c5e" opacity=".74" filter="url(#soft)"/>'+lower+'</g><use href="#eye-base"/><g class="makeup shadow">'+lid+contours+'</g><path class="makeup liner" d="'+look.wing+'" fill="#352329"/><g class="makeup lash" fill="#2b2022">'+spikes(look.upper)+spikes(look.bottom)+'</g><g class="makeup light">'+lights+'</g></svg>';
 }
+const options = ['Western glam','Douyin-inspired','Liner shapes'].map(family =>
+ '<optgroup label="'+family+'">'+looks.map((look,i)=>look.family===family ? '<option value="'+i+'">'+look.name+'</option>' : '').join('')+'</optgroup>').join('');
 function comparison(side, initial) {
  const article = document.createElement('article');
  article.className = 'look';
  const id = 'look-'+side;
- article.innerHTML = '<div class="picker"><label for="'+id+'">Look '+side+'</label><select id="'+id+'">'+looks.map((l,i)=>'<option value="'+i+'">'+l.name+'</option>').join('')+'</select></div><div class="result"></div>';
+ article.innerHTML = '<div class="picker"><label for="'+id+'">Look '+side+'</label><select id="'+id+'">'+options+'</select></div><div class="result"></div>';
  const select = article.querySelector('select');
  const result = article.querySelector('.result');
  function render() {
@@ -110,11 +157,35 @@ function comparison(side, initial) {
    result.innerHTML = chart(look)+'<div class="copy"><h2>'+look.name+'</h2><p class="effect">'+look.effect+'</p><dl>'+fields.map(([key,label])=>'<div><dt>'+label+'</dt><dd>'+look[key]+'</dd></div>').join('')+'</dl></div>';
  }
  select.value = String(initial);
- select.addEventListener('change',render);
+ select.addEventListener('change',()=>{render(); markPair();});
  render();
  return article;
 }
+const pairs = {
+ 'half-full':['Half cut crease','Full cut crease'],
+ 'creases':['Full cut crease','Double cut crease'],
+ 'halo-cut':['Halo eye','Halo cut crease']
+};
+const quickButtons = document.querySelectorAll('[data-pair]');
+function markPair() {
+ const selected = ['A','B'].map(side=>looks[document.getElementById('look-'+side).value].name);
+ for(const button of quickButtons) {
+  const pair = pairs[button.dataset.pair];
+  button.setAttribute('aria-pressed',String(pair[0]===selected[0] && pair[1]===selected[1]));
+ }
+}
 document.querySelector('#pair').append(comparison('A',0), comparison('B',2));
+function choosePair(key) {
+ pairs[key].forEach((name,i)=>{
+  const select = document.getElementById(i===0?'look-A':'look-B');
+  select.value = looks.findIndex(look=>look.name===name);
+  select.dispatchEvent(new Event('change'));
+ });
+}
+for(const button of quickButtons) button.addEventListener('click',()=>choosePair(button.dataset.pair));
+const requestedPair = new URLSearchParams(location.search).get('compare');
+if(Object.hasOwn(pairs,requestedPair)) choosePair(requestedPair);
+else markPair();
 document.querySelector('#layer').addEventListener('change',e=>{guide.dataset.layer=e.target.value;});
 document.querySelector('.tones').addEventListener('change',e=>{guide.style.setProperty('--skin',e.target.value);});
 </script></body></html>
